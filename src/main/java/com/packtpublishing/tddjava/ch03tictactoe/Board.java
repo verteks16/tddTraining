@@ -4,13 +4,13 @@ package com.packtpublishing.tddjava.ch03tictactoe;
  * Created by Edzio on 2018-03-09.
  */
 public class Board {
-    private int[][] boardCells;
+    private char[][] boardCells;
 
     public Board() {
-        boardCells = new int[3][3];
+        boardCells = new char[3][3];
     }
 
-    public void place(int x, int y) {
+    public void place(int x, int y, char symbol) {
         if (x < 0 || x > 2) {
             throw new RuntimeException("Wiersz poza dopuszczalnym zakresem!");
         }
@@ -19,10 +19,14 @@ public class Board {
             throw new RuntimeException("Kolumna poza dopuszczalnym zakresem!");
         }
 
-        if (boardCells[x][y] != 0) {
+        if (boardCells[y][x] != 0) {
             throw new RuntimeException("To pole jest już zajęte!");
         }
 
-        boardCells[y][x] = 1;
+        boardCells[y][x] = symbol;
+    }
+
+    public char getCellSymbol(int x, int y) {
+        return boardCells[y][x];
     }
 }
